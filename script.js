@@ -46,3 +46,19 @@ function displayLibrary() {
         bookContainer.appendChild(currentBook);
     }
 }
+
+// Functions for displaying and closing dialog box
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("#openDialogButton");
+const closeButton = document.querySelector("#closeDialogButton");
+
+// Show dialog when showButton pressed
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+// Close dialog when closeButton pressed
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});

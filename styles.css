@@ -20,10 +20,15 @@ body {
     font-size: 3.5rem;
     font-weight: 600;
     display: flex;
-    justify-content: baseline;
+    justify-content: space-between;
     align-items: center;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.navbar button {
+    padding: 1rem;
+    font-size: 1.2rem;
 }
 
 /* Book Container Styling */
@@ -59,4 +64,30 @@ body {
 
 .book h3 {
     font-size: 1.1rem;
+}
+
+/* Dialog  & Form Styling */
+
+dialog {
+    border: 1px black solid;
+}
+
+dialog > h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
 }
