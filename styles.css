@@ -28,7 +28,7 @@ body {
 
 /* Book Container Styling */
 
-.book_container {
+.bookContainer {
     background-color: white;
     grid-area: book_container;
     display: grid;
