@@ -8,6 +8,15 @@ function Book(title, author, totalPages, readStatus) {
     this.readStatus = readStatus;
 }
 
+// Add toggle read status method to book prototype
+Book.prototype.toggleReadStatus = function () {
+    if (this.readStatus == true) {
+        this.readStatus = false;
+    } else {
+        this.readStatus = true;
+    }
+};
+
 // Push individual books to library array
 function addBookToLibrary(book) {
     library.push(book);
@@ -61,6 +70,18 @@ function displayLibrary() {
             removeBook(i);
         });
         currentBook.appendChild(removeButton);
+
+        // Create change read status button
+        let changeReadStatusButton = document.createElement("button");
+        changeReadStatusButton.textContent = "Change Read Status";
+
+        // Add event listener to change corresponding book read status
+        changeReadStatusButton.addEventListener("click", () => {
+            library[i].toggleReadStatus();
+            // Display library again
+            displayLibrary();
+        });
+        currentBook.appendChild(changeReadStatusButton);
 
         // Append current book to the book container
         bookContainer.appendChild(currentBook);
