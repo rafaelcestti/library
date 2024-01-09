@@ -15,7 +15,7 @@ function addBookToLibrary(book) {
 
 const bookContainer = document.querySelector(".bookContainer");
 
-// Display books in library under books container HTML element
+// Display books in library under books container
 function displayLibrary() {
     for (let book of library) {
         // Create book element
@@ -61,4 +61,47 @@ showButton.addEventListener("click", () => {
 // Close dialog when closeButton pressed
 closeButton.addEventListener("click", () => {
     dialog.close();
+});
+
+// Add book in form to library
+
+const submitButton = document.querySelector("#submitFormButton");
+
+submitButton.addEventListener("click", (event) => {
+    // Select input elements from form
+    let bookTitle = document.querySelector("#title");
+    bookTitle = bookTitle.value;
+
+    let bookAuthor = document.querySelector("#author");
+    bookAuthor = bookAuthor.value;
+
+    let bookTotalPages = document.querySelector("#totalPages");
+    bookTotalPages = bookTotalPages.value;
+
+    let bookReadStatus = document.querySelector("#readStatus");
+
+    // If bookread status is checked, set read status to true, otherwise set to false
+    if (bookReadStatus.checked == true) {
+        bookReadStatus = true;
+    } else {
+        bookReadStatus = false;
+    }
+
+    // Create new book with input elements
+    let newBook = new Book(bookTitle, bookAuthor, bookTotalPages, bookReadStatus);
+
+    // Add new book to library
+    addBookToLibrary(newBook);
+
+    // Clear current books container
+    bookContainer.textContent = "";
+
+    // Close dialog
+    dialog.close();
+
+    // Reset form
+    document.querySelector("form").reset();
+
+    // Display book in library
+    displayLibrary();
 });
