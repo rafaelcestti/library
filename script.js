@@ -13,34 +13,54 @@ function addBookToLibrary(book) {
     library.push(book);
 }
 
+// Remove book from library array
+function removeBook(index) {
+    library.splice(index, 1);
+    displayLibrary();
+}
+
 const bookContainer = document.querySelector(".bookContainer");
 
 // Display books in library under books container
 function displayLibrary() {
-    for (let book of library) {
+    // Clear current books container
+    bookContainer.textContent = "";
+
+    for (let i = 0; i < library.length; i++) {
         // Create book element
         let currentBook = document.createElement("div");
         currentBook.setAttribute("class", "book");
 
         // Create book title element & set appropiate content
         let bookTitle = document.createElement("h1");
-        bookTitle.textContent = book.title;
+        bookTitle.textContent = library[i].title;
         currentBook.appendChild(bookTitle);
 
         // Create book author element & set appropiate content
         let bookAuthor = document.createElement("h2");
-        bookAuthor.textContent = `By: ${book.author}`;
+        bookAuthor.textContent = `By: ${library[i].author}`;
         currentBook.appendChild(bookAuthor);
 
         // Create book pages element & set appropiate content
         let bookPages = document.createElement("h3");
-        bookPages.textContent = `${book.totalPages} pages`;
+        bookPages.textContent = `${library[i].totalPages} pages`;
         currentBook.appendChild(bookPages);
 
         // Create book read status element & set appropiate content
         let bookReadStatus = document.createElement("h3");
-        bookReadStatus.textContent = `${book.readStatus ? "Read" : "Not Read"}`;
+        bookReadStatus.textContent = `${library[i].readStatus ? "Read" : "Not Read"}`;
         currentBook.appendChild(bookReadStatus);
+
+        // Create remove button
+        let removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.setAttribute("id", i);
+
+        // Add event listener to remove corresponding book
+        removeButton.addEventListener("click", () => {
+            removeBook(i);
+        });
+        currentBook.appendChild(removeButton);
 
         // Append current book to the book container
         bookContainer.appendChild(currentBook);
@@ -92,9 +112,6 @@ submitButton.addEventListener("click", (event) => {
 
     // Add new book to library
     addBookToLibrary(newBook);
-
-    // Clear current books container
-    bookContainer.textContent = "";
 
     // Close dialog
     dialog.close();
