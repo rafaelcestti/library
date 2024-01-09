@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
-    background-color: black;
     font-family: "Roboto", sans-serif;
     height: 100vh;
     display: grid;
@@ -16,6 +15,7 @@ body {
 
 .navbar {
     background-color: rgb(122, 122, 255);
+    color: ;
     grid-area: navbar;
     font-size: 3.5rem;
     font-weight: 600;
@@ -45,12 +45,12 @@ body {
 /* Individual Book Styling */
 
 .book {
-    background-color: orange;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    box-shadow: 2px 2px 5px rgb(199, 199, 199);
 }
 
 .book h1 {
@@ -64,6 +64,11 @@ body {
 
 .book h3 {
     font-size: 1.1rem;
+}
+
+.book button {
+    margin: 0.25rem;
+    padding: 0.5rem;
 }
 
 /* Dialog  & Form Styling */
