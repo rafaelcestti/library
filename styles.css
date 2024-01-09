@@ -15,7 +15,6 @@ body {
 
 .navbar {
     background-color: rgb(122, 122, 255);
-    color: ;
     grid-area: navbar;
     font-size: 3.5rem;
     font-weight: 600;
