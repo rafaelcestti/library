@@ -1,21 +1,18 @@
 const library = [];
 
-// Book Constructor
-function Book(title, author, totalPages, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.totalPages = totalPages;
-    this.readStatus = readStatus;
-}
-
-// Add toggle read status method to book prototype
-Book.prototype.toggleReadStatus = function () {
-    if (this.readStatus == true) {
-        this.readStatus = false;
-    } else {
-        this.readStatus = true;
+// Book Class
+class Book {
+    constructor(title, author, totalPages, readStatus) {
+        this.title = title;
+        this.author = author;
+        this.totalPages = totalPages;
+        this.readStatus = readStatus;
     }
-};
+
+    toggleReadStatus() {
+        this.readStatus = !this.readStatus;
+    }
+}
 
 // Push individual books to library array
 function addBookToLibrary(book) {
