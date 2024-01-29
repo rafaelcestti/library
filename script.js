@@ -106,37 +106,68 @@ closeButton.addEventListener("click", () => {
 const submitButton = document.querySelector("#submitFormButton");
 
 submitButton.addEventListener("click", (event) => {
+    if (checkValidity()) {
+        // Select input elements from form
+        let bookTitle = document.querySelector("#title");
+        bookTitle = bookTitle.value;
+
+        let bookAuthor = document.querySelector("#author");
+        bookAuthor = bookAuthor.value;
+
+        let bookTotalPages = document.querySelector("#totalPages");
+        bookTotalPages = bookTotalPages.value;
+
+        let bookReadStatus = document.querySelector("#readStatus");
+
+        // If bookread status is checked, set read status to true, otherwise set to false
+        if (bookReadStatus.checked == true) {
+            bookReadStatus = true;
+        } else {
+            bookReadStatus = false;
+        }
+
+        // Create new book with input elements
+        let newBook = new Book(bookTitle, bookAuthor, bookTotalPages, bookReadStatus);
+
+        // Add new book to library
+        addBookToLibrary(newBook);
+
+        // Close dialog
+        dialog.close();
+
+        // Reset form
+        document.querySelector("form").reset();
+
+        // Display book in library
+        displayLibrary();
+    }
+});
+
+function checkValidity() {
     // Select input elements from form
     let bookTitle = document.querySelector("#title");
-    bookTitle = bookTitle.value;
-
     let bookAuthor = document.querySelector("#author");
-    bookAuthor = bookAuthor.value;
-
     let bookTotalPages = document.querySelector("#totalPages");
-    bookTotalPages = bookTotalPages.value;
 
-    let bookReadStatus = document.querySelector("#readStatus");
 
-    // If bookread status is checked, set read status to true, otherwise set to false
-    if (bookReadStatus.checked == true) {
-        bookReadStatus = true;
+    // Add initial validity
+    if (bookTitle.validity.valueMissing) {
+        bookTitle.setCustomValidity("Book title is required");
+        bookTitle.reportValidity();
+        return false;
+    } else if (bookAuthor.validity.valueMissing) {
+        bookAuthor.setCustomValidity("Book author is required");
+        bookAuthor.reportValidity();
+        return false;
+    } else if (bookTotalPages.validity.valueMissing) {
+        bookTotalPages.setCustomValidity("Number of pages is required");
+        bookTotalPages.reportValidity();
+        return false;
     } else {
-        bookReadStatus = false;
+        bookTitle.setCustomValidity("");
+        bookAuthor.setCustomValidity("");
+        bookTotalPages.setCustomValidity("");
     }
 
-    // Create new book with input elements
-    let newBook = new Book(bookTitle, bookAuthor, bookTotalPages, bookReadStatus);
-
-    // Add new book to library
-    addBookToLibrary(newBook);
-
-    // Close dialog
-    dialog.close();
-
-    // Reset form
-    document.querySelector("form").reset();
-
-    // Display book in library
-    displayLibrary();
-});
+    return true;
+}
